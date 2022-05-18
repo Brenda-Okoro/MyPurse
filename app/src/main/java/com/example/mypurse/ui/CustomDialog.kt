@@ -1,5 +1,6 @@
-package com.example.mypurse
+package com.example.mypurse.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +9,20 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
+import com.example.mypurse.R
+import com.example.mypurse.data.Transaction
 import com.example.mypurse.databinding.LayoutAddTransactionBinding
+import com.example.mypurse.viewmodel.TransactionViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.*
 
+@AndroidEntryPoint
 class CustomDialog : DialogFragment() {
     private var _binding: LayoutAddTransactionBinding? = null
+    private val transactionViewModel: TransactionViewModel by viewModels()
+    var transactionID = -1
 
     private val binding get() = _binding!!
 
@@ -25,6 +36,7 @@ class CustomDialog : DialogFragment() {
         return binding.root
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onStart() {
         super.onStart()
         val transType = resources.getStringArray(R.array.Transaction_type)
@@ -55,6 +67,25 @@ class CustomDialog : DialogFragment() {
         val width = (resources.displayMetrics.widthPixels * 0.85).toInt()
         val height = (resources.displayMetrics.heightPixels * 0.40).toInt()
         dialog!!.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
+
+        binding.btnAdd.setOnClickListener {
+            // getting all content
+            val contentDesc = binding.txtTransDesc.text.toString()
+            val amount = binding.txtAmount.text.toString()
+            val sdf = SimpleDateFormat("dd MMM, yyyy - HH:mm")
+            val currentDateAndTime: String = sdf.format(Date())
+            transactionViewModel.addTransaction(
+                Transaction(
+                    transactionID,
+                    transType.toString(),
+                    contentDesc,
+                    amount,
+                    currentDateAndTime
+                )
+            )
+            binding.txtTransDesc.text.clear()
+            binding.txtAmount.text.clear()
+        }
 
     }
 }

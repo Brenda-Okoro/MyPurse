@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
+    tools:context=".ui.TransactionFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/budget_ll"
@@ -146,16 +146,16 @@
 
                 <com.google.android.material.progressindicator.LinearProgressIndicator
                     android:id="@+id/progressCircleDeterminate"
+                    style="@style/Widget.MaterialComponents.LinearProgressIndicator"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
-                    android:progress="30"
                     android:layout_marginStart="20dp"
+                    android:layout_marginTop="50dp"
                     android:layout_marginEnd="20dp"
-                    style="@style/Widget.MaterialComponents.LinearProgressIndicator"
+                    android:progress="30"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_amt_balance"/>
+                    app:layout_constraintTop_toBottomOf="@+id/txt_amt_balance" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -174,14 +174,21 @@
         app:layout_constraintTop_toBottomOf="@+id/budget_ll"
         tools:listitem="@layout/layout_budget" />
 
-    <Button
-        android:id="@+id/button_first"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/empty_list"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/next"
-        android:textColor="@color/white"
+        android:layout_margin="10dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="@string/empty_list"
+        android:textColor="@color/dark_blue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/budget_list" />
+        app:layout_constraintTop_toBottomOf="@+id/budget_ll"
+        tools:listitem="@layout/layout_budget" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
