@@ -22,7 +22,7 @@ import java.util.*
 class CustomDialog : DialogFragment() {
     private var _binding: LayoutAddTransactionBinding? = null
     private val transactionViewModel: TransactionViewModel by viewModels()
-    var transactionID = -1
+    var transactionID = 0
 
     private val binding get() = _binding!!
 
@@ -75,8 +75,7 @@ class CustomDialog : DialogFragment() {
             val sdf = SimpleDateFormat("dd MMM, yyyy - HH:mm")
             val currentDateAndTime: String = sdf.format(Date())
             transactionViewModel.addTransaction(
-                Transaction(
-                    transactionID,
+                Transaction(transactionID,
                     transType.toString(),
                     contentDesc,
                     amount,
