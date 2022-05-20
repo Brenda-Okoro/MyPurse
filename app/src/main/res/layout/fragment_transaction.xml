@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="8dp"
-                    android:text="$200"
+                    android:text="2000"
                     android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -94,18 +94,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="70dp"
-                    android:text="$1000"
+                    android:text="@string/income_amt"
                     android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/txt_amt_balance"
-                    app:layout_constraintHorizontal_bias="0.944"
+                    app:layout_constraintHorizontal_bias="0.825"
                     app:layout_constraintStart_toEndOf="@+id/txt_amt_expenses"
                     app:layout_constraintTop_toBottomOf="@+id/txt_income"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <View
+                    android:id="@+id/view2"
                     android:layout_width="1dp"
                     android:layout_height="80dp"
                     android:layout_marginStart="32dp"
@@ -135,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="40dp"
-                    android:text="$900"
+                    android:text="200"
                     android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -145,14 +146,15 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <com.google.android.material.progressindicator.LinearProgressIndicator
-                    android:id="@+id/progressCircleDeterminate"
+                    android:id="@+id/progressbar"
                     style="@style/Widget.MaterialComponents.LinearProgressIndicator"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="50dp"
                     android:layout_marginEnd="20dp"
-                    android:progress="30"
+                    android:max="100"
+                    android:indeterminate="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txt_amt_balance" />
@@ -170,6 +172,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:scrollbars="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/budget_ll"
         tools:listitem="@layout/layout_budget" />

@@ -1,10 +1,13 @@
 package com.example.mypurse.ui
 
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -37,8 +40,20 @@ class TransactionFragment : Fragment(), ClickDeleteInterface {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val totalIncome = binding.txtAmtIncome.text.toString()
+        val totalExpenses = binding.txtAmtExpenses.text.toString()
+
+        val income = totalIncome.toDouble()
+        val expenses = totalExpenses.toDouble()
+        val bal: Double = income - expenses
+        binding.txtAmtBalance.setText(bal.toString()).toString()
+
+        val ratio: Double = expenses / income
+        binding.progressbar.setProgress((ratio * 100).toInt()).toString()
 
         // this creates a vertical layout Manager
         binding.budgetList.layoutManager = LinearLayoutManager(context)

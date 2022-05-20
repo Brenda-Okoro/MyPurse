@@ -16,6 +16,7 @@
     <string name="transaction_content">Transaction Content</string>
     <string name="add_transaction">Add Transaction</string>
     <string name="empty_list">Ooops! No transaction available</string>
+    <string name="income_amt">5000</string>
 
 
     <string-array name="Transaction_type">
