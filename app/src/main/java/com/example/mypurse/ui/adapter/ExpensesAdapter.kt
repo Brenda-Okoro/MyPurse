@@ -39,7 +39,7 @@ class ExpensesAdapter(
         // on below line we are setting data to item of recycler view.
         holder.itemTV.text = allTransactions[position].content
         holder.dateTV.text = allTransactions[position].timeStamp
-        holder.amountTV.text = allTransactions[position].amount
+        holder.amountTV.text = allTransactions[position].amount.toString()
         // click listener for delete image view icon.
         holder.deleteIV.setOnClickListener {
             clickDeleteInterface.onDeleteIconClick(allTransactions[position])

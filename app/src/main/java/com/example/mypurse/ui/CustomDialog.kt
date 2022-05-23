@@ -18,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 @AndroidEntryPoint
 class CustomDialog : DialogFragment() {
     private var _binding: LayoutAddTransactionBinding? = null
@@ -53,11 +54,40 @@ class CustomDialog : DialogFragment() {
                 parent: AdapterView<*>,
                 view: View, position: Int, id: Long
             ) {
+                binding.btnAdd.setOnClickListener {
+                    if (binding.txtTransDesc.text.trim()
+                            .isNotEmpty() && binding.txtAmount.text.trim()
+                            .isNotEmpty()
+                    ) {
+                        // getting all content
+                        val contentDesc = binding.txtTransDesc.text.toString()
+                        val amount = binding.txtAmount.text.toString()
+
+
+                        val sdf = SimpleDateFormat("dd MMM, yyyy - HH:mm")
+                        val currentDateAndTime: String = sdf.format(Date())
+                        transactionViewModel.addTransaction(
+                            Transaction(
+                                transactionID,
+                                transType[position].toString(),
+                                contentDesc,
+                                amount.toDouble(),
+                                currentDateAndTime
+                            )
+                        )
+                    } else {
+                        Toast.makeText(context, "Please enter some data! ", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                    binding.txtTransDesc.text.clear()
+                    binding.txtAmount.text.clear()
+                }
                 Toast.makeText(
                     context,
                     getString(R.string.add_transaction) + " " +
                             "" + transType[position], Toast.LENGTH_SHORT
                 ).show()
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -67,24 +97,6 @@ class CustomDialog : DialogFragment() {
         val width = (resources.displayMetrics.widthPixels * 0.85).toInt()
         val height = (resources.displayMetrics.heightPixels * 0.40).toInt()
         dialog!!.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
-
-        binding.btnAdd.setOnClickListener {
-            // getting all content
-            val contentDesc = binding.txtTransDesc.text.toString()
-            val amount = binding.txtAmount.text.toString()
-            val sdf = SimpleDateFormat("dd MMM, yyyy - HH:mm")
-            val currentDateAndTime: String = sdf.format(Date())
-            transactionViewModel.addTransaction(
-                Transaction(transactionID,
-                    transType.toString(),
-                    contentDesc,
-                    amount,
-                    currentDateAndTime
-                )
-            )
-            binding.txtTransDesc.text.clear()
-            binding.txtAmount.text.clear()
-        }
 
     }
 }

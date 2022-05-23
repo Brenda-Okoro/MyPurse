@@ -33,4 +33,5 @@ class TransactionViewModel @Inject constructor(
     fun deleteTransaction(transaction: Transaction) = viewModelScope.launch(Dispatchers.IO) {
         repository.deleteTransactions(transaction)
     }
+
 }

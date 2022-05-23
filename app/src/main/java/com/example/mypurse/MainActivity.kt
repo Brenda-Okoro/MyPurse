@@ -1,7 +1,10 @@
 package com.example.mypurse
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.mypurse.databinding.ActivityMainBinding
 import com.example.mypurse.ui.CustomDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,5 +25,6 @@ class MainActivity : AppCompatActivity() {
         binding.fab.setOnClickListener {
             CustomDialog().show(supportFragmentManager, "CustomFragment")
         }
+
     }
 }

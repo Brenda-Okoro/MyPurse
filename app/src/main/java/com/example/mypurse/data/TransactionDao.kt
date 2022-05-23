@@ -12,15 +12,9 @@ interface TransactionDao {
     fun getTransaction(id: Int): Transaction
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(transaction: List<Transaction>)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(transaction: Transaction)
 
     @Delete
     suspend fun delete(transaction: Transaction)
-
-    @Delete
-    fun deleteAll(transaction: List<Transaction>)
 
 }
