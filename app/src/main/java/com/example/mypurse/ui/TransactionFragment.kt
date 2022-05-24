@@ -56,23 +56,27 @@ class TransactionFragment : Fragment(), ClickDeleteInterface {
             list?.let {
                 // on below line we are updating our list.
                 adapter.updateList(it)
+                totalIncome = 0.0
+                totalExpenses = 0.0
                 for (item in it) {
                     if (item.transType == "Income") {
                         val income = item.amount.toString()
-                        totalIncome = income.toDouble()
-                        binding.txtAmtIncome.setText(totalIncome.toString()).toString()
+                        totalIncome += income.toDouble()
                     } else if (item.transType == "Expense") {
                         val expenses = item.amount.toString()
-                        totalExpenses = expenses.toDouble()
-                        binding.txtAmtExpenses.setText(totalExpenses.toString()).toString()
-                    }
-                    val bal: Double = totalIncome - totalExpenses
-                    binding.txtAmtBalance.setText(bal.toString()).toString()
+                        totalExpenses += expenses.toDouble()
 
-                    val ratio: Double = totalExpenses / totalIncome
-                    binding.progressbar.setProgress((ratio * 100).toInt()).toString()
+                    }
                     println(item)
                 }
+                binding.txtAmtIncome.setText(totalIncome.toString()).toString()
+                binding.txtAmtExpenses.setText(totalExpenses.toString()).toString()
+
+                val bal: Double = totalIncome - totalExpenses
+                binding.txtAmtBalance.setText(bal.toString()).toString()
+
+                val ratio: Double = totalExpenses / totalIncome
+                binding.progressbar.setProgress((ratio * 100).toInt()).toString()
             }
         })
     }
