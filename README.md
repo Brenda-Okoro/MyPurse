@@ -17,7 +17,7 @@ How it works
 - Type in a description (Say e.g Food stuff or Uber)
 - Enter the amount
 - Click 'Add'
-# you will notice the expenses is updated, income has reduced and the balance #left is displayed
+# you will notice the expenses is updated, income has reduced and the balance left is displayed
 
 - Repeat same process for all your expenses
 
