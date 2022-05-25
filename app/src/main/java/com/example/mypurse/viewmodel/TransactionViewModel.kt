@@ -14,11 +14,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TransactionViewModel @Inject constructor(
-    private val application: Application,
+    private val application: Application
 ) : ViewModel() {
 
     val allTransactions: LiveData<List<Transaction>>
-    val repository: TransactionRepository
+    private val repository: TransactionRepository
 
     // initialize dao
     init {
